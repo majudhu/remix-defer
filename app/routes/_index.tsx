@@ -1,5 +1,5 @@
 import { defer } from "@remix-run/node";
-import { useLoaderData, Await } from "@remix-run/react";
+import { useLoaderData, Await, Link } from "@remix-run/react";
 import { Suspense } from "react";
 
 export async function loader() {
@@ -40,6 +40,7 @@ export default function Index() {
   } = useLoaderData<typeof loader>();
   return (
     <div>
+      <Link to="/">/</Link>
       <p>{zero_second}xx</p>
       <Suspense>
         <Await resolve={one_second}>{(data) => <p>{data}</p>}</Await>
@@ -53,9 +54,9 @@ export default function Index() {
       <Suspense>
         <Await resolve={four_second}>{(data) => <p>{data}</p>}</Await>
       </Suspense>
-      <Suspense>
+      {/* <Suspense>
         <Await resolve={five_second}>{(data) => <p>{data}</p>}</Await>
-      </Suspense>
+      </Suspense> */}
     </div>
   );
 }
